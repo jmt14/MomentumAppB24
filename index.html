@@ -1,1 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Momentum</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div id="background"></div>
 
+    <div id="setup">
+      <div id="photo">
+        <img
+          src="https://avatar-management--avatars.us-west-2.prod.public.atl-paas.net/default-avatar.png"
+          alt=""
+        />
+      </div>
+
+      <form id="info">
+        <label
+          >Hello, what's your name?
+          <input
+            type="text"
+            name="name"
+            id="name"
+            pattern="^(?![ .]+$)[a-zA-Z .]*$"
+            maxlength="35"
+            required
+          />
+        </label>
+        <button type="submit">enter</button>
+      </form>
+    </div>
+
+    <main>
+      <div id="watch">
+        <div id="time"></div>
+
+        <div class="settings">
+          <label class="toggle-button" for="watch-toggle">&#8943;</label>
+          <input
+            class="toggle-input"
+            type="checkbox"
+            name="watch-toggle"
+            id="watch-toggle"
+          />
+          <div class="options">
+            <div class="option" id="time-format">
+              <label class="toggle-button" for="format-switch"
+                >24-Hour Clock</label
+              >
+              <input type="checkbox" name="format-switch" id="format-switch" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="date"></div>
+
+      <div id="greeting">Greetings!</div>
+
+      <form id="focus-question">
+        <label for="">What is your main focus for today?</label>
+        <input type="text" name="" id="" />
+        <button type="submit">enter</button>
+      </form>
+
+      <form id="focus">
+        <input type="checkbox" name="focus-checkbox" id="focus-checkbox" />
+        <label for="focus-checkbox">Focus Example</label>
+        <div class="settings">
+          <label class="toggle-button" for="focus-toggle">&#8943;</label>
+          <input
+            class="toggle-input"
+            type="checkbox"
+            name="focus-toggle"
+            id="focus-toggle"
+          />
+          <div class="options">
+            <div class="option" id="edit-focus">
+              <button>edit</button>
+            </div>
+            <div class="option" id="clear-focus">
+              <button>clear</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div id="congratulate">Nice!</div>
+
+      <div id="daily-quote"></div>
+
+      <div id="todo">
+        <label class="toggle-button" for="todo-toggle">To Do</label>
+        <input
+          class="toggle-input"
+          type="checkbox"
+          name="todo-toggle"
+          id="todo-toggle"
+        />
+        <div class="options">
+          <div id="todo-header">
+            <select name="category" id="category">
+              <option value="today">Today</option>
+              <option value="done">Done</option>
+            </select>
+            <div class="settings">
+              <label class="toggle-button" for="todo-settings-toggle"
+                >&#8943;</label
+              >
+              <input
+                class="toggle-input"
+                type="checkbox"
+                name="todo-settings-toggle"
+                id="todo-settings-toggle"
+              />
+              <div class="options">
+                <div class="option" id="check-all">
+                  <button>Check All</button>
+                </div>
+                <div class="option" id="delete-all">
+                  <button>Delete All</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="today"></div>
+          <div id="done"></div>
+          <div id="todo-footer">
+            <input type="text" placeholder="New To-Do" id="create-todo" />
+          </div>
+        </div>
+      </div>
+
+      <div class="settings" id="general-settings">
+        <label class="toggle-button" for="general-settings-toggle"
+          >&#9851;</label
+        >
+        <input
+          class="toggle-input"
+          type="checkbox"
+          name="general-settings-toggle"
+          id="general-settings-toggle"
+        />
+        <div class="options">
+          <label class="option" for="about">About</label>
+          <input
+            class="option"
+            type="radio"
+            name="general-options"
+            id="about"
+          />
+          <div class="option" id="about-settings"></div>
+          <label class="option" for="quotes">Quotes</label>
+          <input
+            class="option"
+            type="radio"
+            name="general-options"
+            id="quotes"
+          />
+          <div class="option" id="about-settings"></div>
+        </div>
+      </div>
+    </main>
+    <script src="assets/js/script.js"></script>
+  </body>
+</html>
