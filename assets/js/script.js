@@ -399,4 +399,26 @@ if (storageItem) {
     // if expired, resets every focus value if focus has expired
     clearFocus();
   }
+  if(allQuotes != 0){
+    renderQuotes();
+  }
 }
+
+const allQuotes = [] // array for quotes
+const  addQuotesHere = document.getElementById("addQuotesHere") // input quotes
+const quotesEl = document.getElementById("quotes-el") // display quotes
+
+// adding new quotes
+function saveQuotes(){
+  allQuotes.push(addQuotesHere.value); //push new inputted quotes to array
+  localStorage.setItem("quotes", JSON.stringify(addQuotesHere.value)); // stpre new inputted quotes to storage
+  addQuotesHere.value = ""
+  renderQuotes();
+}
+
+function renderQuotes(){
+  for (i = 0; i < allQuotes.length; i++){
+  quotesEl.textContent = localStorage.getItem("quotes", allQuotes[i])
+}
+}
+
