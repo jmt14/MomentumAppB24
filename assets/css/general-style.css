@@ -1,0 +1,19 @@
+@font-face {
+  font-family: "Number Style";
+  src: local(Arial);
+  size-adjust: 200%;
+  unicode-range: U+30-39;
+}
+
+:root {
+  --fnt-clr: hsl(0, 100%, 100%, 1);
+}
+
+body {
+  color: var(--fnt-clr);
+}
+
+#time {
+  font-family: "Number Style", "Arial", sans-serif;
+  font-size: clamp(2rem, 5vw, 5rem);
+}

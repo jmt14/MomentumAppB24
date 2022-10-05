@@ -137,13 +137,13 @@ dateDiv.textContent =
 // show greetings
 const greetingDiv = document.querySelector("#greeting"),
   greetStatement = "Good ",
-  generalTimeOfDay = ["Morning", "Afternoon", "Evening"];
+  generalTimeOfDay = ["Morning", "Afternoon", "Evening"],
+  // assigns time of day starting time
+  morningStart = 0, // 00:00
+  afternoonStart = 12, // 12:00
+  eveningStart = 16; // 16:00;
 
 function greet() {
-  // assigns time of day starting time
-  const morningStart = 0, // 00:00
-    afternoonStart = 12, // 12:00
-    eveningStart = 16; // 16:00
   // check if morning, afternoon, or evening
   if (currentDateTime.getHours() >= morningStart) {
     greetingDiv.textContent =
