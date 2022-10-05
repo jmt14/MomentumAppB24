@@ -54,6 +54,7 @@
           src="https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
           alt=""
         />
+        <img src="assets/images/noon.jpg" alt="" />
       </div>
       <div class="set" id="night">
         <img
@@ -76,6 +77,8 @@
           src="https://images.unsplash.com/photo-1566342088293-38debd381c63?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80"
           alt=""
         />
+        <img src="assets/images/pexels-ian-beckley-2440024.jpg" alt="" />
+        <img src="assets/images/evening.jpg" alt="" />
       </div>
     </div>
 
@@ -108,7 +111,9 @@
         <div id="time"></div>
 
         <div class="settings">
-          <label class="toggle-button" for="watch-toggle">&#8943;</label>
+          <label class="toggle-button appear-on-hover" for="watch-toggle"
+            ><span>&#8943;</span></label
+          >
           <input
             class="toggle-input"
             type="checkbox"
@@ -132,15 +137,17 @@
 
       <form id="focus-question">
         <label for="">What is your main focus for today?</label>
-        <input type="text" name="" id="" />
+        <input type="text" name="" id="" maxlength="32" />
         <button type="submit">enter</button>
       </form>
-
+      <span id="focus-span">TODAY</span>
       <form id="focus">
         <input type="checkbox" name="focus-checkbox" id="focus-checkbox" />
         <label for="focus-checkbox">Focus Example</label>
         <div class="settings">
-          <label class="toggle-button" for="focus-toggle">&#8943;</label>
+          <label class="toggle-button appear-on-hover" for="focus-toggle"
+            ><span>&#8943;</span></label
+          >
           <input
             class="toggle-input"
             type="checkbox"
@@ -156,6 +163,7 @@
             </div>
           </div>
         </div>
+        <div class="pseudo-checkbox appear-on-hover"></div>
       </form>
 
       <div id="congratulate">Nice!</div>
@@ -193,7 +201,7 @@
             </select>
             <div class="settings">
               <label class="toggle-button" for="todo-settings-toggle"
-                >&#8943;</label
+                ><span>&#8943;</span></label
               >
               <input
                 class="toggle-input"

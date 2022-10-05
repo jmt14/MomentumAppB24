@@ -6,7 +6,7 @@ const showBackground = (currentSet) => {
   let randomSetChild = Math.floor(
     Math.random() * sets[currentSet].children.length
   );
-  sets[currentSet].children[randomSetChild].style.opacity = "1";
+  sets[currentSet].children[randomSetChild].style.opacity = "0.8";
 };
 
 const bgTimeOut = 10000; // in milliseconds how fast bg switches

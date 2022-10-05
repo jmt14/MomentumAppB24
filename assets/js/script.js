@@ -33,6 +33,15 @@ inputFocus.addEventListener("keyup", () => {
   }
 });
 
+const expandingInput = document.querySelector("#focus-question input");
+
+//expands on content width
+expandingInput.addEventListener("keydown", () => {
+  let expandingValue = expandingInput.value;
+  let expandingValueLength = expandingValue.length;
+  expandingInput.style.width = expandingValueLength + 4 + "ch";
+});
+
 // *********************************************
 // function codes
 // *********************************************
@@ -193,6 +202,7 @@ setupNameButton.addEventListener("click", () => {
     setupPage.style.opacity = "0";
     mainContent.style.visibility = "visible";
     mainContent.style.opacity = "1";
+    setupNameButton.style.visibility = "hidden";
   } else {
     console.log("name not valid");
   }
@@ -204,7 +214,9 @@ const getFocusButton = document.querySelector("#focus-question > button"),
   getFocusInput = document.querySelector("#focus-question > input"),
   showFocusLabel = document.querySelector("#focus > label"),
   showFocusCheckbox = document.querySelector("#focus-checkbox"),
-  focusPattern = /[A-Za-z0-9+-/*',.><{}()\[\]#@!$%^&]{1,}/;
+  focusPattern = /[A-Za-z0-9+-/*',.><{}()\[\]#@!$%^&]{1,32}/,
+  focusSpan = document.querySelector("#focus-span"),
+  focusToggler = document.querySelector("#focus-toggle");
 
 function showFocus() {
   showFocusLabel.textContent = userInfo.focus;
@@ -271,6 +283,10 @@ getFocusButton.addEventListener("click", () => {
     focusQuestion.style.opacity = "0";
     mainFocus.style.visibility = "visible";
     mainFocus.style.opacity = "1";
+    getFocusButton.style.visibility = "hidden";
+
+    focusSpan.style.visibility = "visible";
+    focusSpan.style.opacity = "1";
   } else {
     console.log("invalid focus");
   }
@@ -295,6 +311,12 @@ editFocusButton.addEventListener("click", () => {
   focusQuestion.style.opacity = "1";
   mainFocus.style.visibility = "hidden";
   mainFocus.style.opacity = "0";
+  getFocusButton.style.visibility = "visible";
+  getFocusButton.style.opacity = "1";
+
+  focusSpan.style.visibility = "hidden";
+  focusSpan.style.opacity = "0";
+  focusToggler.checked = false;
 });
 
 // clear focus
@@ -319,6 +341,12 @@ function clearFocus() {
   focusQuestion.style.opacity = "1";
   mainFocus.style.visibility = "hidden";
   mainFocus.style.opacity = "0";
+  getFocusButton.style.visibility = "hidden";
+  getFocusButton.style.opacity = "0";
+
+  focusSpan.style.visibility = "hidden";
+  focusSpan.style.opacity = "0";
+  focusToggler.checked = false;
 }
 
 // calls the function on click
