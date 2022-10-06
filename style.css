@@ -15,6 +15,7 @@
 .toggle-input ~ .options {
   visibility: hidden;
   opacity: 0;
+  
 }
 .toggle-input:checked ~ .options {
   visibility: visible;
@@ -136,6 +137,20 @@ main {
   min-width: max-content;
 }
 
+#Quotes{
+  position: absolute;
+  bottom: 20px;
+  margin-left: 50px;
+}
+
+#new-btn{
+  border: 1px solid white;
+  border-radius: 30px;
+  padding: 1px 2px;
+  position: absolute;
+  margin-left: 410px;
+}
+
 /* focus */
 #focus {
   display: flex;
@@ -156,3 +171,6 @@ main {
   bottom: 20px;
   right: 20px;
 }
+
+
+

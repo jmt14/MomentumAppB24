@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -159,7 +160,22 @@
 
       <div id="congratulate">Nice!</div>
 
-      <div id="daily-quote"></div>
+      <form id="form-add-new">
+        <label id="header-qts">Quotes Settings</label>
+        <label id="new-lbl">Add new quotes here:</label>
+        <input id="input-qts" type="text">
+
+        <button id="save-btn" onclick="saveqts()">Save quote</button>
+        <label id="cancel-btn">x</label>
+        
+        <label id="all-qts">All quotes</label>
+        <ul id="ul-el">
+        </ul>
+      </form>
+      <div id="Quotes">
+        <label id="new-btn">+</label>
+        <p id="quotes-el"></p>
+      </div>
 
       <div id="todo">
         <label class="toggle-button" for="todo-toggle">To Do</label>

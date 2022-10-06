@@ -263,6 +263,7 @@ getFocusButton.addEventListener("click", () => {
     showFocus();
     updateLocalStorage();
 
+
     // styling codes
     // shows the main focus, hides focus question
     // (forward animation)
@@ -399,26 +400,65 @@ if (storageItem) {
     // if expired, resets every focus value if focus has expired
     clearFocus();
   }
-  if(allQuotes != 0){
-    renderQuotes();
-  }
 }
 
-const allQuotes = [] // array for quotes
-const  addQuotesHere = document.getElementById("addQuotesHere") // input quotes
-const quotesEl = document.getElementById("quotes-el") // display quotes
+let myQuotes = [];
+let storedQuotes = JSON.parse(localStorage.getItem("myQuotes"));
+const inputQts = document.getElementById("input-qts");
+const quotesEl = document.getElementById("quotes-el");
+const newBtn = document.getElementById("new-btn");
+const saveBtn = document.getElementById("save-btn");
+const cancelBtn = document.getElementById("cancel-btn")
+const formAddNew = document.getElementById("form-add-new")
+const ulEl = document.getElementById("ul-el")
 
-// adding new quotes
-function saveQuotes(){
-  allQuotes.push(addQuotesHere.value); //push new inputted quotes to array
-  localStorage.setItem("quotes", JSON.stringify(addQuotesHere.value)); // stpre new inputted quotes to storage
-  addQuotesHere.value = ""
+if(storedQuotes){
+  myQuotes = storedQuotes
+  quotesEl.textContent = myQuotes[0];
   renderQuotes();
+formAddNew.style.display ="none"
+}
+
+function saveqts(){
+  myQuotes.push(inputQts.value);
+  inputQts.value = "";
+  localStorage.setItem("myQuotes",JSON.stringify(myQuotes));
+  console.log(myQuotes);
+  renderQuotes();
+  formAddNew.style.display = "none"
+}
+
+
+function renderQuotesAll() {
+  let listItems = ""
+  for (let i = 0; i < myQuotes.length; i++) {
+      listItems += `
+          <li>
+              <p>
+                  ${myQuotes[i]}
+              </p>
+          </li>
+      `
+  }
+  ulEl.innerHTML = listItems  
 }
 
 function renderQuotes(){
-  for (i = 0; i < allQuotes.length; i++){
-  quotesEl.textContent = localStorage.getItem("quotes", allQuotes[i])
+  setInterval(() =>{
+    let randomQuotes = Math.floor(Math.random() * myQuotes.length);
+  for (i = 0; i < myQuotes.length; i++){
+  quotesEl.textContent = myQuotes[randomQuotes];
 }
+}, 10000);
 }
 
+
+newBtn.addEventListener("click", () => {
+formAddNew.style.display = "block"
+renderQuotesAll();
+})
+
+cancelBtn.addEventListener("click", () =>{
+  formAddNew.style.display = "none"
+  inputQts.value = "";
+})
