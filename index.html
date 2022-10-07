@@ -167,28 +167,26 @@
 
       <div id="congratulate">Nice!</div>
 
-
       <div id="popup-window">
         <div class="popup-content">
           <label id="header-qts">Quotes</label>
           <p id="note-qts">A daily reminder for inspiration and growth</p>
           <label id="close-btn">x</label>
-            <div id="qts-menu">
-                <label id="myQuotes" >My Quotes</label>
-                <label id="add-btn">+Add Quote</label>
-            </div>
+          <div id="qts-menu">
+            <label id="myQuotes">My Quotes</label>
+            <label id="add-btn">+Add Quote</label>
+          </div>
 
-            <div id="quotes-list">
-              <ul id="ul-el">
-              </ul>
-            </div>
+          <div id="quotes-list">
+            <ul id="ul-el"></ul>
+          </div>
 
-            <div id="addWindow">
-                <label id="new-lbl">Add new quotes here:</label>
-                <input id="input-qts" type="text">
-                <button id="save-btn" onclick="saveqts()">Save</button>
-                <button id="cancel-btn">Cancel</button>
-            </div>
+          <div id="addWindow">
+            <label id="new-lbl">Add new quotes here:</label>
+            <input id="input-qts" type="text" />
+            <button id="save-btn" onclick="saveqts()">Save</button>
+            <button id="cancel-btn">Cancel</button>
+          </div>
         </div>
       </div>
 
@@ -199,9 +197,9 @@
 
       <!-- Todo List -->
 
-      <button id= "to-do-btn" class="to-do-btn">To Do List</button>
-      
-      <div id="modal" class="to-do-modal" >
+      <button id="to-do-btn" class="to-do-btn">To Do List</button>
+
+      <div id="modal" class="to-do-modal">
         <div class="task-entry">
           <button class="close-modal">&times;</button>
           <h3>To Do List</h3>
@@ -213,44 +211,16 @@
             </select>
           </div>
           <form>
-          <input type="text" class="task-input" placeholder="Enter a new task"/>
-          <button class="add-task" type="submit">Add</button>
+            <input
+              type="text"
+              class="task-input"
+              placeholder="Enter a new task"
+            />
+            <button class="add-task" type="submit">Add</button>
           </form>
-        <div class="todo-container">
-          <ul class="todo-list"></ul>
+          <div class="todo-container">
+            <ul class="todo-list"></ul>
           </div>
-
-        </div>
-      </div>
-    </div>  
-
-      <div class="settings" id="general-settings">
-        <label class="toggle-button" for="general-settings-toggle"
-          >&#9851;</label
-        >
-        <input
-          class="toggle-input"
-          type="checkbox"
-          name="general-settings-toggle"
-          id="general-settings-toggle"
-        />
-        <div class="options">
-          <label class="option" for="about">About</label>
-          <input
-            class="option"
-            type="radio"
-            name="general-options"
-            id="about"
-          />
-          <div class="option" id="about-settings"></div>
-          <label class="option" for="quotes">Quotes</label>
-          <input
-            class="option"
-            type="radio"
-            name="general-options"
-            id="quotes"
-          />
-          <div class="option" id="about-settings"></div>
         </div>
       </div>
     </main>

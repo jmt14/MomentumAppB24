@@ -256,9 +256,8 @@ main {
 #focus .settings > .toggle-button:hover {
   background-color: hsl(0, 100%, 100%, 0.25);
 }
-
-/* #watch .settings > label {
-  background-color: red;
-  border-radius: 50%;
-  font-size: 6rem;
-} */
+#watch .settings:has(:checked) .appear-on-hover,
+#focus .settings:has(:checked) .appear-on-hover {
+  background-color: hsl(0, 100%, 100%, 0.25);
+  opacity: 1;
+}
