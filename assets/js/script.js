@@ -511,7 +511,8 @@ const addButton = document.querySelector(".add-task");
 const todoList = document.querySelector(".todo-list");
 const menuOption = document.querySelector(".menu-option")
 
-
+//events
+document.addEventListener('DOMContentLoaded', getTasks);
 addButton.addEventListener('click', addTask);
 todoList.addEventListener('click', deleteTask);
 menuOption.addEventListener('click', filterMenu)
@@ -528,6 +529,8 @@ function addTask(event) {
   newTask.innerText = taskInput.value ;
   newTask.classList.add('task-items');
   taskDiv.appendChild(newTask);
+  //Tasks to localstorage
+  saveLocalTasks(taskInput.value);
   //check button
   const completeButton = document.createElement('button');
   completeButton.innerHTML = '\u2714'
@@ -540,7 +543,7 @@ function addTask(event) {
   taskDiv.appendChild(deleteButton);
   //back to list
   todoList.appendChild(taskDiv)
-
+  //clear input
   taskInput.value = "";
 }
 
@@ -552,6 +555,7 @@ if (item.classList[0] === 'delete-btn') {
   const task = item.parentElement;
   //transition
   task.classList.add("yeet");
+  removeLocalTasks(task);
   task.addEventListener('transitionend', function() {
   task.remove();
 });
@@ -590,3 +594,60 @@ function filterMenu(e) {
   });
 }
 
+//check the storage
+function saveLocalTasks(task) {
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+
+  tasks.push(task);
+  localStorage.setItem('tasks', JSON.stringify(tasks));
+}
+
+function getTasks() {
+  //check the storage
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  tasks.forEach(function(task){
+  //tasks div
+  const taskDiv = document.createElement('div');
+  taskDiv.classList.add("task");
+  //creation of list
+  const newTask = document.createElement('li');
+  newTask.innerText = task;
+  newTask.classList.add('task-items');
+  taskDiv.appendChild(newTask);
+  //check button
+  const completeButton = document.createElement('button');
+  completeButton.innerHTML = '\u2714'
+  completeButton.classList.add("complete-btn");
+  taskDiv.appendChild(completeButton);
+  //trash button
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = 'Delete'
+  deleteButton.classList.add("delete-btn");
+  taskDiv.appendChild(deleteButton);
+  //back to list
+  todoList.appendChild(taskDiv);
+  });
+}
+
+function removeLocalTasks(task) {
+  //check the storage
+  let tasks;
+  if(localStorage.getItem('tasks') === null){
+    tasks = [];
+  }else{
+    tasks = JSON.parse(localStorage.getItem('tasks'));
+  }
+  const taskIndex = task.children[0].innerText;
+  tasks.splice(tasks.indexOf(taskIndex), 1);
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+}
