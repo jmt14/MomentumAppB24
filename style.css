@@ -135,19 +135,6 @@ main {
   min-width: max-content;
 }
 
-#Quotes {
-  position: absolute;
-  bottom: 20px;
-  margin-left: 50px;
-}
-
-#new-btn {
-  border: 1px solid white;
-  border-radius: 30px;
-  padding: 1px 2px;
-  position: absolute;
-  margin-left: 410px;
-}
 /* focus-question */
 #focus-question {
   display: flex;
@@ -184,16 +171,53 @@ main {
   font-size: 1.5rem;
 }
 
+#Quotes {
+  position: absolute;
+  bottom: 20px;
+  margin-left: 50px;
+}
+
+#view-btn:hover {
+  background-color: rgba(250, 249, 249, 0.6);
+  border-radius: 30px;
+  padding: 1px 7px 1px;
+}
+
+#add-btn:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+}
+
+#save-btn:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+#cancel-btn:hover {
+  background-color: rgba(231, 0, 0, 0.6);
+}
+
+#close-btn:hover{
+  background-color: rgba(231, 0, 0, 0.6);
+}
+
+#new-btn {
+  border: 1px solid white;
+  border-radius: 30px;
+  padding: 1px 2px;
+  position: absolute;
+  margin-left: 410px;
+}
+
 .popup-content{
   height: 60%;
   width: 40%;
   background: rgba(0,0,0,1.6);
   padding: 20px;
-  border-radius: 10px;
+  border-radius: 50px;
+  border: 1px solid rgb(255, 255, 255);
   position: relative;
-  left: 40rem;
-  top: 15rem;
-  color: rgb(255, 255, 255)
+  left: 32%;
+  top: 20%;
+  color: rgb(255, 255, 255);
 }
 
 #header-qts{
@@ -234,13 +258,13 @@ main {
   border: 1px solid white;
   background: black;
   border-radius: 30px;
-  padding:1px 7px 5px;
+  padding:1px 10px 5px;
   text-align: center;
   align-items: center;
   font-size: 1rem;
   position: absolute;
-  left: 98%;
-  top: -1%;
+  left: 96.5%;
+  top: 0%;
 }
 
 #addWindow{
@@ -248,7 +272,7 @@ main {
   padding: 2rem;
   background-color: white;
   color: black;
-  border-radius: 2rem;
+  border-radius: 1rem;
 }
 
 #addWindow > input{
@@ -293,3 +317,66 @@ li {
   margin-left: 0;
   padding: 0;
 }
+
+      @media screen and (max-width:1000px) {
+        #popup-window{
+          font-size: .5rem;
+          width: 150%;
+        }
+
+        .popup-content{
+          font-size: .8rem;
+        }
+        
+        #header-qts{
+          font-size: 1.5rem;
+        }
+        
+        #note-qts{
+          font-size: .9rem;
+
+        }
+
+        #myQuotes{
+          padding-left:1rem;
+          font-size: 1rem;
+        }
+        
+        #add-btn{
+          margin-left: 12rem;
+          font-size: .9rem;
+        }
+        
+        #quotes-list{
+          margin-top: 1rem;
+        }
+        
+        #close-btn{
+          left: 93.7%;
+          top: 0%;
+        }
+        
+        #addWindow{
+          height: 10rem;
+          padding: 1rem;
+        }
+        
+        #addWindow > button{
+          background-color: rgb(16, 153, 172);
+          color: white;
+          margin-top: 20px;
+          padding: 5px 5px;
+          font-size: .8rem;
+          width: 10rem;
+          margin-left: 20px;
+        }
+        
+        #Quotes{
+          width: 60%;
+          font-size: 1rem;
+        }
+        
+        #view-btn{
+          margin-right: 1rem;
+        }
+      }
