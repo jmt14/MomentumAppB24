@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -168,21 +167,34 @@
 
       <div id="congratulate">Nice!</div>
 
-      <form id="form-add-new">
-        <label id="header-qts">Quotes Settings</label>
-        <label id="new-lbl">Add new quotes here:</label>
-        <input id="input-qts" type="text">
 
-        <button id="save-btn" onclick="saveqts()">Save quote</button>
-        <label id="cancel-btn">x</label>
-        
-        <label id="all-qts">All quotes</label>
-        <ul id="ul-el">
-        </ul>
-      </form>
+      <div id="popup-window">
+        <div class="popup-content">
+          <label id="header-qts">Quotes</label>
+          <p id="note-qts">A daily reminder for inspiration and growth</p>
+          <label id="close-btn">x</label>
+            <div id="qts-menu">
+                <label id="myQuotes" >My Quotes</label>
+                <label id="add-btn">+Add Quote</label>
+            </div>
+
+            <div id="quotes-list">
+              <ul id="ul-el">
+              </ul>
+            </div>
+
+            <div id="addWindow">
+                <label id="new-lbl">Add new quotes here:</label>
+                <input id="input-qts" type="text">
+                <button id="save-btn" onclick="saveqts()">Save</button>
+                <button id="cancel-btn">Cancel</button>
+            </div>
+        </div>
+      </div>
+
       <div id="Quotes">
-        <label id="new-btn">+</label>
-        <p id="quotes-el"></p>
+        <label id="view-btn">&#8943;</label>
+        <label id="quotes-el"></label>
       </div>
 
       <!-- Todo List -->

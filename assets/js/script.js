@@ -190,6 +190,12 @@ setupNameButton.addEventListener("click", () => {
     }, timeInterval);
     // initially sets userInfo.name value
     userInfo["name"] = setupNameInput.value;
+
+    // added by kazel for local storage update in myQuotes
+    localStorage.setItem("myQuotes", JSON.stringify(myQuotes));
+    renderQuotes();
+    formAddNew.style.display = "none";
+
     // show greeting
     greet();
     // update localStorage with new values
@@ -274,7 +280,6 @@ getFocusButton.addEventListener("click", () => {
     getFocusInput.disabled = true;
     showFocus();
     updateLocalStorage();
-
 
     // styling codes
     // shows the main focus, hides focus question
@@ -430,66 +435,88 @@ if (storageItem) {
   }
 }
 
-let myQuotes = [];
+let myQuotes = [
+  '"The only way to learn to code is to write a lot of code". -Aristoteles',
+  "“Experience is the name everyone gives to their mistakes.” – Oscar Wilde",
+];
 let storedQuotes = JSON.parse(localStorage.getItem("myQuotes"));
 const inputQts = document.getElementById("input-qts");
 const quotesEl = document.getElementById("quotes-el");
-const newBtn = document.getElementById("new-btn");
+const viewBtn = document.getElementById("view-btn");
 const saveBtn = document.getElementById("save-btn");
-const cancelBtn = document.getElementById("cancel-btn")
-const formAddNew = document.getElementById("form-add-new")
-const ulEl = document.getElementById("ul-el")
+const addBtn = document.getElementById("add-btn");
+const closeBtn = document.getElementById("close-btn");
+const cancelBtn = document.getElementById("cancel-btn");
+const formAddNew = document.getElementById("popup-window");
+const addWindow = document.getElementById("addWindow");
+const ulEl = document.getElementById("ul-el");
 
-if(storedQuotes){
-  myQuotes = storedQuotes
+console.log(myQuotes);
+
+if (storedQuotes) {
+  myQuotes = storedQuotes;
   quotesEl.textContent = myQuotes[0];
   renderQuotes();
-formAddNew.style.display ="none"
+  formAddNew.style.display = "none";
 }
 
-function saveqts(){
+function saveqts() {
   myQuotes.push(inputQts.value);
   inputQts.value = "";
-  localStorage.setItem("myQuotes",JSON.stringify(myQuotes));
-  console.log(myQuotes);
-  renderQuotes();
-  formAddNew.style.display = "none"
+  localStorage.setItem("myQuotes", JSON.stringify(myQuotes));
+  addWindow.style.display = "none";
+  ulEl.style.display = "block";
+  renderQuotesAll();
 }
 
-
 function renderQuotesAll() {
-  let listItems = ""
+  let listItems = "";
   for (let i = 0; i < myQuotes.length; i++) {
-      listItems += `
+    listItems += `
           <li>
               <p>
                   ${myQuotes[i]}
               </p>
           </li>
-      `
+      `;
   }
-  ulEl.innerHTML = listItems  
+  ulEl.innerHTML = listItems;
 }
 
-function renderQuotes(){
-  setInterval(() =>{
-    let randomQuotes = Math.floor(Math.random() * myQuotes.length);
-  for (i = 0; i < myQuotes.length; i++){
-  quotesEl.textContent = myQuotes[randomQuotes];
-}
-}, 10000);
-}
+closeBtn.addEventListener("click", () => {
+  formAddNew.style.display = "none";
+});
 
+addBtn.addEventListener("click", () => {
+  addWindow.style.display = "block";
+  ulEl.style.display = "none";
+});
 
-newBtn.addEventListener("click", () => {
-formAddNew.style.display = "block"
-renderQuotesAll();
-})
+viewBtn.addEventListener("click", () => {
+  formAddNew.style.display = "block";
+  addWindow.style.display = "none";
+  renderQuotesAll();
+});
 
-cancelBtn.addEventListener("click", () =>{
-  formAddNew.style.display = "none"
+cancelBtn.addEventListener("click", () => {
+  addWindow.style.display = "none";
   inputQts.value = "";
-})
+  ulEl.style.display = "block";
+});
+
+function renderQuotes() {
+  setInterval(() => {
+    let randomQuotes = Math.floor(Math.random() * myQuotes.length);
+    for (i = 0; i < myQuotes.length; i++) {
+      quotesEl.textContent = myQuotes[randomQuotes];
+    }
+  }, 3000);
+}
+
+cancelBtn.addEventListener("click", () => {
+  formAddNew.style.display = "none";
+  inputQts.value = "";
+});
 
 // To do List functions
 
@@ -498,51 +525,50 @@ const modal = document.querySelector("#modal");
 
 document.querySelector(".to-do-btn").addEventListener("click", () => {
   modal.style.display = "block";
-})
+});
 
 document.querySelector(".close-modal").addEventListener("click", () => {
   modal.style.display = "none";
-})
+});
 
 //form
 
 const taskInput = document.querySelector(".task-input");
 const addButton = document.querySelector(".add-task");
 const todoList = document.querySelector(".todo-list");
-const menuOption = document.querySelector(".menu-option")
+const menuOption = document.querySelector(".menu-option");
 
 //events
-document.addEventListener('DOMContentLoaded', getTasks);
-addButton.addEventListener('click', addTask);
-todoList.addEventListener('click', deleteTask);
-menuOption.addEventListener('click', filterMenu)
-
+document.addEventListener("DOMContentLoaded", getTasks);
+addButton.addEventListener("click", addTask);
+todoList.addEventListener("click", deleteTask);
+menuOption.addEventListener("click", filterMenu);
 
 function addTask(event) {
   //stops submission
   event.preventDefault();
   //tasks div
-  const taskDiv = document.createElement('div');
+  const taskDiv = document.createElement("div");
   taskDiv.classList.add("task");
   //creation of list
-  const newTask = document.createElement('li');
-  newTask.innerText = taskInput.value ;
-  newTask.classList.add('task-items');
+  const newTask = document.createElement("li");
+  newTask.innerText = taskInput.value;
+  newTask.classList.add("task-items");
   taskDiv.appendChild(newTask);
   //Tasks to localstorage
   saveLocalTasks(taskInput.value);
   //check button
-  const completeButton = document.createElement('button');
-  completeButton.innerHTML = '\u2714'
+  const completeButton = document.createElement("button");
+  completeButton.innerHTML = "\u2714";
   completeButton.classList.add("complete-btn");
   taskDiv.appendChild(completeButton);
   //trash button
-  const deleteButton = document.createElement('button');
-  deleteButton.innerHTML = 'Delete'
+  const deleteButton = document.createElement("button");
+  deleteButton.innerHTML = "Delete";
   deleteButton.classList.add("delete-btn");
   taskDiv.appendChild(deleteButton);
   //back to list
-  todoList.appendChild(taskDiv)
+  todoList.appendChild(taskDiv);
   //clear input
   taskInput.value = "";
 }
@@ -550,41 +576,41 @@ function addTask(event) {
 function deleteTask(e) {
   const item = e.target;
 
-// Delete from list
-if (item.classList[0] === 'delete-btn') {
-  const task = item.parentElement;
-  //transition
-  task.classList.add("yeet");
-  removeLocalTasks(task);
-  task.addEventListener('transitionend', function() {
-  task.remove();
-});
-}
+  // Delete from list
+  if (item.classList[0] === "delete-btn") {
+    const task = item.parentElement;
+    //transition
+    task.classList.add("yeet");
+    removeLocalTasks(task);
+    task.addEventListener("transitionend", function () {
+      task.remove();
+    });
+  }
 
-// Done task
-if (item.classList[0] === 'complete-btn') {
-  const task = item.parentElement;
-  task.classList.toggle('done');
-}
+  // Done task
+  if (item.classList[0] === "complete-btn") {
+    const task = item.parentElement;
+    task.classList.toggle("done");
+  }
 }
 
 //menu filter
 function filterMenu(e) {
   const tasks = todoList.childNodes;
-  tasks.forEach(function(task) {
-    switch( e.target.value) {
+  tasks.forEach(function (task) {
+    switch (e.target.value) {
       case "all":
         task.style.display = "flex";
         break;
       case "complete":
-        if (task.classList.contains('done')) {
+        if (task.classList.contains("done")) {
           task.style.display = "flex";
         } else {
           task.style.display = "none";
         }
         break;
       case "pending":
-        if (!task.classList.contains('done')) {
+        if (!task.classList.contains("done")) {
           task.style.display = "flex";
         } else {
           task.style.display = "none";
@@ -597,55 +623,55 @@ function filterMenu(e) {
 //check the storage
 function saveLocalTasks(task) {
   let tasks;
-  if(localStorage.getItem('tasks') === null){
+  if (localStorage.getItem("tasks") === null) {
     tasks = [];
-  }else{
-    tasks = JSON.parse(localStorage.getItem('tasks'));
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
   }
 
   tasks.push(task);
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+  localStorage.setItem("tasks", JSON.stringify(tasks));
 }
 
 function getTasks() {
   //check the storage
   let tasks;
-  if(localStorage.getItem('tasks') === null){
+  if (localStorage.getItem("tasks") === null) {
     tasks = [];
-  }else{
-    tasks = JSON.parse(localStorage.getItem('tasks'));
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
   }
-  tasks.forEach(function(task){
-  //tasks div
-  const taskDiv = document.createElement('div');
-  taskDiv.classList.add("task");
-  //creation of list
-  const newTask = document.createElement('li');
-  newTask.innerText = task;
-  newTask.classList.add('task-items');
-  taskDiv.appendChild(newTask);
-  //check button
-  const completeButton = document.createElement('button');
-  completeButton.innerHTML = '\u2714'
-  completeButton.classList.add("complete-btn");
-  taskDiv.appendChild(completeButton);
-  //trash button
-  const deleteButton = document.createElement('button');
-  deleteButton.innerHTML = 'Delete'
-  deleteButton.classList.add("delete-btn");
-  taskDiv.appendChild(deleteButton);
-  //back to list
-  todoList.appendChild(taskDiv);
+  tasks.forEach(function (task) {
+    //tasks div
+    const taskDiv = document.createElement("div");
+    taskDiv.classList.add("task");
+    //creation of list
+    const newTask = document.createElement("li");
+    newTask.innerText = task;
+    newTask.classList.add("task-items");
+    taskDiv.appendChild(newTask);
+    //check button
+    const completeButton = document.createElement("button");
+    completeButton.innerHTML = "\u2714";
+    completeButton.classList.add("complete-btn");
+    taskDiv.appendChild(completeButton);
+    //trash button
+    const deleteButton = document.createElement("button");
+    deleteButton.innerHTML = "Delete";
+    deleteButton.classList.add("delete-btn");
+    taskDiv.appendChild(deleteButton);
+    //back to list
+    todoList.appendChild(taskDiv);
   });
 }
 
 function removeLocalTasks(task) {
   //check the storage
   let tasks;
-  if(localStorage.getItem('tasks') === null){
+  if (localStorage.getItem("tasks") === null) {
     tasks = [];
-  }else{
-    tasks = JSON.parse(localStorage.getItem('tasks'));
+  } else {
+    tasks = JSON.parse(localStorage.getItem("tasks"));
   }
   const taskIndex = task.children[0].innerText;
   tasks.splice(tasks.indexOf(taskIndex), 1);
