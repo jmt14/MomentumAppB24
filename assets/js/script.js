@@ -190,6 +190,12 @@ setupNameButton.addEventListener("click", () => {
     }, timeInterval);
     // initially sets userInfo.name value
     userInfo["name"] = setupNameInput.value;
+
+    // added by kazel for local storage update in myQuotes
+    localStorage.setItem("myQuotes",JSON.stringify(myQuotes));
+    renderQuotes();
+    formAddNew.style.display ="none"
+
     // show greeting
     greet();
     // update localStorage with new values
@@ -430,15 +436,20 @@ if (storageItem) {
   }
 }
 
-let myQuotes = [];
+let myQuotes = ['"The only way to learn to code is to write a lot of code". -Aristoteles', '“Experience is the name everyone gives to their mistakes.” – Oscar Wilde'];
 let storedQuotes = JSON.parse(localStorage.getItem("myQuotes"));
 const inputQts = document.getElementById("input-qts");
 const quotesEl = document.getElementById("quotes-el");
-const newBtn = document.getElementById("new-btn");
+const viewBtn = document.getElementById("view-btn");
 const saveBtn = document.getElementById("save-btn");
-const cancelBtn = document.getElementById("cancel-btn")
-const formAddNew = document.getElementById("form-add-new")
-const ulEl = document.getElementById("ul-el")
+const addBtn = document.getElementById("add-btn");
+const closeBtn = document.getElementById("close-btn");
+const cancelBtn = document.getElementById("cancel-btn");
+const formAddNew = document.getElementById("popup-window");
+const addWindow = document.getElementById("addWindow");
+const ulEl = document.getElementById("ul-el");
+
+console.log(myQuotes);
 
 if(storedQuotes){
   myQuotes = storedQuotes
@@ -451,9 +462,9 @@ function saveqts(){
   myQuotes.push(inputQts.value);
   inputQts.value = "";
   localStorage.setItem("myQuotes",JSON.stringify(myQuotes));
-  console.log(myQuotes);
-  renderQuotes();
-  formAddNew.style.display = "none"
+  addWindow.style.display = "none";
+  ulEl.style.display = "block"
+  renderQuotesAll();
 }
 
 
@@ -471,22 +482,35 @@ function renderQuotesAll() {
   ulEl.innerHTML = listItems  
 }
 
+closeBtn.addEventListener("click", () => {
+  formAddNew.style.display = "none"
+})
+
+addBtn.addEventListener("click", () =>{
+  addWindow.style.display = "block"
+  ulEl.style.display = "none"
+})
+
+viewBtn.addEventListener("click", () => {
+formAddNew.style.display = "block"
+addWindow.style.display = "none"
+renderQuotesAll();
+})
+
+cancelBtn.addEventListener("click", () =>{
+  addWindow.style.display = "none"
+  inputQts.value = "";
+  ulEl.style.display = "block"
+})
+
 function renderQuotes(){
   setInterval(() =>{
     let randomQuotes = Math.floor(Math.random() * myQuotes.length);
   for (i = 0; i < myQuotes.length; i++){
   quotesEl.textContent = myQuotes[randomQuotes];
 }
-}, 10000);
+}, 3000);
 }
 
 
-newBtn.addEventListener("click", () => {
-formAddNew.style.display = "block"
-renderQuotesAll();
-})
 
-cancelBtn.addEventListener("click", () =>{
-  formAddNew.style.display = "none"
-  inputQts.value = "";
-})
