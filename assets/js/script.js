@@ -227,6 +227,8 @@ const getFocusButton = document.querySelector("#focus-question > button"),
 function showFocus() {
   showFocusLabel.textContent = userInfo.focus;
   getFocusInput.value = userInfo.focus;
+  focusSpan.style.visibility = "visible";
+  focusSpan.style.opacity = "1";
 }
 
 // congratulates user if focus is checked out

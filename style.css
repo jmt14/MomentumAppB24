@@ -129,8 +129,6 @@ main {
 }
 #watch .settings > .options {
   position: absolute;
-  top: 100%;
-  left: 0;
 
   min-width: max-content;
 }
@@ -300,8 +298,8 @@ select {
 
 #Quotes {
   position: absolute;
-  bottom: 20px;
-  margin-left: 50px;
+  bottom: 40px;
+  /* margin-left: 50px; */
 }
 
 #view-btn:hover {
