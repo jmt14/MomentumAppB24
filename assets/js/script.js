@@ -490,3 +490,103 @@ cancelBtn.addEventListener("click", () =>{
   formAddNew.style.display = "none"
   inputQts.value = "";
 })
+
+// To do List functions
+
+//modal
+const modal = document.querySelector("#modal");
+
+document.querySelector(".to-do-btn").addEventListener("click", () => {
+  modal.style.display = "block";
+})
+
+document.querySelector(".close-modal").addEventListener("click", () => {
+  modal.style.display = "none";
+})
+
+//form
+
+const taskInput = document.querySelector(".task-input");
+const addButton = document.querySelector(".add-task");
+const todoList = document.querySelector(".todo-list");
+const menuOption = document.querySelector(".menu-option")
+
+
+addButton.addEventListener('click', addTask);
+todoList.addEventListener('click', deleteTask);
+menuOption.addEventListener('click', filterMenu)
+
+
+function addTask(event) {
+  //stops submission
+  event.preventDefault();
+  //tasks div
+  const taskDiv = document.createElement('div');
+  taskDiv.classList.add("task");
+  //creation of list
+  const newTask = document.createElement('li');
+  newTask.innerText = taskInput.value ;
+  newTask.classList.add('task-items');
+  taskDiv.appendChild(newTask);
+  //check button
+  const completeButton = document.createElement('button');
+  completeButton.innerHTML = '\u2714'
+  completeButton.classList.add("complete-btn");
+  taskDiv.appendChild(completeButton);
+  //trash button
+  const deleteButton = document.createElement('button');
+  deleteButton.innerHTML = 'Delete'
+  deleteButton.classList.add("delete-btn");
+  taskDiv.appendChild(deleteButton);
+  //back to list
+  todoList.appendChild(taskDiv)
+
+  taskInput.value = "";
+}
+
+function deleteTask(e) {
+  const item = e.target;
+
+// Delete from list
+if (item.classList[0] === 'delete-btn') {
+  const task = item.parentElement;
+  //transition
+  task.classList.add("yeet");
+  task.addEventListener('transitionend', function() {
+  task.remove();
+});
+}
+
+// Done task
+if (item.classList[0] === 'complete-btn') {
+  const task = item.parentElement;
+  task.classList.toggle('done');
+}
+}
+
+//menu filter
+function filterMenu(e) {
+  const tasks = todoList.childNodes;
+  tasks.forEach(function(task) {
+    switch( e.target.value) {
+      case "all":
+        task.style.display = "flex";
+        break;
+      case "complete":
+        if (task.classList.contains('done')) {
+          task.style.display = "flex";
+        } else {
+          task.style.display = "none";
+        }
+        break;
+      case "pending":
+        if (!task.classList.contains('done')) {
+          task.style.display = "flex";
+        } else {
+          task.style.display = "none";
+        }
+        break;
+    }
+  });
+}
+

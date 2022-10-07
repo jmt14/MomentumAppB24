@@ -185,7 +185,34 @@
         <p id="quotes-el"></p>
       </div>
 
-      <div id="todo">
+      <!-- Todo List -->
+
+      <button id= "to-do-btn" class="to-do-btn">To Do List</button>
+      
+      <div id="modal" class="to-do-modal" >
+        <div class="task-entry">
+          <button class="close-modal">&times;</button>
+          <h3>To Do List</h3>
+          <div class="select">
+            <select name="taskmenu" id="" class="menu-option">
+              <option value="all">All</option>
+              <option value="complete">Completed</option>
+              <option value="pending">Pending</option>
+            </select>
+          </div>
+          <form>
+          <input type="text" class="task-input" placeholder="Enter a new task"/>
+          <button class="add-task" type="submit">Add</button>
+          </form>
+        <div class="todo-container">
+          <ul class="todo-list"></ul>
+          </div>
+
+        </div>
+      </div>
+    </div>  
+
+      <!-- <div id="todo">
         <label class="toggle-button" for="todo-toggle">To Do</label>
         <input
           class="toggle-input"
@@ -225,7 +252,7 @@
             <input type="text" placeholder="New To-Do" id="create-todo" />
           </div>
         </div>
-      </div>
+      </div> -->
 
       <div class="settings" id="general-settings">
         <label class="toggle-button" for="general-settings-toggle"

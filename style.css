@@ -169,8 +169,136 @@ main {
 }
 
 /* todo */
-#todo {
+.to-do-btn {
   position: absolute;
+  background: white;
+  padding: 8px 10px;
   bottom: 20px;
   right: 20px;
+  border-radius: 5px;
 }
+
+.close-modal {
+  color: darkgrey;
+  font-size: 30x;
+  padding: 1px 4px 1px 4px;
+  float: right;
+}
+
+.close-modal:hover,.close-modal:focus{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.to-do-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.4);
+  color: black;
+}
+
+
+.task-entry {
+  background-color: white;
+  position: absolute;
+  margin: 20% auto;
+  padding: 30px 30px 30px;
+  width: 50%;
+  height: 50%;
+  top: 25%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+  box-shadow: 0 5px 8px 0 rgba(0,0,0,0.2), 0 7px 20px 0 rgba(0,0,0,0.16);
+  font-size: 24px;
+  border-radius: 8px;
+  overflow: auto;
+  background: grey;
+  max-width: 560px;
+}
+
+.task-input {
+  width: 80%;
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 5px;
+}
+
+.add-task {
+  background-color: lightgrey;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+  float: right;
+}
+
+.todo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.todo-list {
+  width: 100%;
+  list-style: none;
+  margin: 10px;
+  margin-bottom: 10px;
+  margin-top: 20px;
+  justify-content: space-between;
+}
+
+.task {
+  padding: 10px 5px 10px 5px;
+  background-color: lightgrey;
+  font-size: 10px;
+  display: flex;
+  font-size: 16px;
+  align-items: center;
+  transition: all 1s ease;
+  justify-content: space-between;
+}
+
+.task li {
+  flex: 1;
+}
+
+.delete-btn{
+  background: grey;
+  padding: 4px;
+  justify-content: space-between;
+}
+
+.complete-btn{
+  background: grey;
+  padding: 3px;
+  justify-content: space-between;
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+  transition: all 1s ease;
+}
+
+.yeet {
+  opacity: 0;
+}
+
+.select {
+  position: relative;
+  overflow: hidden;
+}
+
+select {
+  cursor: pointer;
+}
+
