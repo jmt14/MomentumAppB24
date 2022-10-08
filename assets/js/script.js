@@ -436,7 +436,7 @@ if (storageItem) {
   }
 }
 
-let myQuotes = ['"The only way to learn to code is to write a lot of code". -Aristoteles', '“Experience is the name everyone gives to their mistakes.” – Oscar Wilde'];
+let myQuotes = ['"The only way to learn to code is to write a lot of code."', '“Experience is the name everyone gives to their mistakes."'];
 let storedQuotes = JSON.parse(localStorage.getItem("myQuotes"));
 const inputQts = document.getElementById("input-qts");
 const quotesEl = document.getElementById("quotes-el");
@@ -459,7 +459,8 @@ formAddNew.style.display ="none"
 }
 
 function saveqts(){
-  myQuotes.push(inputQts.value);
+  let conQuotes = '"' + inputQts.value + '"';
+  myQuotes.push(conQuotes);
   inputQts.value = "";
   localStorage.setItem("myQuotes",JSON.stringify(myQuotes));
   addWindow.style.display = "none";
